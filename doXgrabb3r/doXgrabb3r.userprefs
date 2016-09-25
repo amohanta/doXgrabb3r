@@ -1,0 +1,13 @@
+﻿<Properties StartupConfiguration="{EF72E080-D29D-4AB3-BEAD-38F4CBD12833}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="doXgrabb3r\Program.cs">
+    <Files>
+      <File FileName="doXgrabb3r\Program.cs" Line="27" Column="31" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.doXgrabb3r PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
