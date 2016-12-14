@@ -14,8 +14,11 @@ server of your choice.
 After that, it quits. 
 
 # Updates
-It has no modules for persistnce and shows a command window too.
-For best possible stealth experience and additions,
-please contact the developer if you are willing to PAY right! :)
+It has no modules for persistance, no auto-startup capabilities, 
+no resume capabilities and shows a command prompt window too.
+For best possible stealth experience and additions, please contact 
+and support the developer as it reqiures time and effort :)
+DONATIONS are Accepted via PayPal, Perfect Money and Bitcoin.
+( Buy me a Coffee :P )
 
 # HAPPY HACKING 3:)
