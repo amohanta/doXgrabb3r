@@ -2,7 +2,8 @@
 
 
 # Description
-Used to hack a windows computer (Linux too only if it's running in wine)
+Used to hack a windows computer (Linux too only if it's running in wine)  
+and steal certain files from it.
 
 # Detection
 It's fully undetected to all the antiviruses of the world as of now.
